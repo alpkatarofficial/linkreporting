@@ -1,0 +1,20 @@
+{% extends "analytics/base.html" %}
+
+{% block content %}
+<div style="text-align: center; margin-top: 40px;">
+    <h2 style="font-weight: 600; font-size: 24px;">Analysis Results</h2>
+
+    {% if graphic %}
+    <img src="data:image/png;base64,{{ graphic }}"
+         alt="Analytics Chart"
+         style="max-width: 100%; height: auto; margin: 30px auto; display: block;">
+    {% endif %}
+    <a href="{% url 'download_chart' %}" 
+        style="display: inline-block; margin-top: 20px; padding: 10px 15px; background: #3F3DFF; color: white; text-decoration: none; border-radius: 5px;">
+        ⬇️ Download Chart
+    </a>
+
+
+
+</div>
+{% endblock %}
