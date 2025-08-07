@@ -8,9 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'hx^8qu%8@0397(bcrlv%f^ar+kfk0cult-b$@)ydz2v$zonvom'  # Replace with a real key!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['linkreporting.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
