@@ -125,10 +125,10 @@ def analytics_view(request):
         # Load from query params and safely cast
         form = AnalyticsForm(initial={
             'month1': request.GET.get('month1', 'Ocak'),
-            'value1': int(request.GET.get('value1', 100)),
+            'value1': safe_float(request.GET.get('value1', 100)),
             'color1': request.GET.get('color1', '#1f77b4'),
             'month2': request.GET.get('month2', 'Şubat'),
-            'value2': int(request.GET.get('value2', 150)),
+            'value2': safe_float(request.GET.get('value2', 150)),
             'color2': request.GET.get('color2', '#ff7f0e'),
             'bar_width': safe_float(request.GET.get('bar_width'), 0.7),
             'chart_width': safe_float(request.GET.get('chart_width'), 4.0),
