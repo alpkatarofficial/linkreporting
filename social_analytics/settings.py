@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'hx^8qu%8@0397(bcrlv%f^ar+kfk0cult-b$@)ydz2v$zonvom'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['linkreporting.onrender.com']
 
