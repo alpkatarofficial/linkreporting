@@ -1,17 +1,17 @@
 import os
 from pathlib import Path
-import dj_database_url  # Already imported
+import dj_database_url
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'
+# Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'hx^8qu%8@0397(bcrlv%f^ar+kfk0cult-b$@)ydz2v$zonvom'  # Replace with a real key!
+# SECURITY WARNING: keep the secret key used in production!
+SECRET_KEY = 'hx^8qu%8@0397(bcrlv%f^ar+kfk0cult-b$@)ydz2v$zonvom'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['linkreporting.onrender.com']  # Replace with your actual Render URL
+ALLOWED_HOSTS = ['linkreporting.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -26,7 +26,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this for static file support on Render
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -40,7 +40,7 @@ ROOT_URLCONF = 'social_analytics.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Added templates directory
+        'DIRS': [BASE_DIR / 'templates'],  # Use pathlib here for consistency
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,25 +55,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'social_analytics.wsgi.application'
 
-# Production database configuration
+# ✅ DATABASE — fallback to local db.sqlite3 if DATABASE_URL is not set
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    )
 }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # Internationalization
@@ -82,17 +76,18 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# ✅ Static files
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Added for production
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # for collectstatic
 
-# Use WhiteNoise to serve static files in production
+# ✅ Comment this out unless you have a /static folder
+# STATICFILES_DIRS = [BASE_DIR / 'static']
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files (user uploaded)
+# Media files (if needed)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
-# Default primary key field type
+# Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
