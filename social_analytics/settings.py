@@ -59,11 +59,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'social_analytics.wsgi.application'
 
-# ✅ DATABASE — fallback to local db.sqlite3 if DATABASE_URL is not set
+# Database configuration
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Ensure you are using SQLite if you prefer file-based DB
+        'NAME': BASE_DIR / 'db.sqlite3',  # Ensure the correct path to the db.sqlite3 file
+    }
 }
 
 # Password validation
@@ -85,7 +86,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # for collectstatic
 
 # Comment this out unless you have a /static folder
-# STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
