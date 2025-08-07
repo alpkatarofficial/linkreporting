@@ -61,11 +61,14 @@ WSGI_APPLICATION = 'social_analytics.wsgi.application'
 
 # Database configuration
 
+# Database setup
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Make sure this path is correct
+    }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -86,7 +89,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # for collectstatic
 
 # Comment this out unless you have a /static folder
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
