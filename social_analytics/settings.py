@@ -1,6 +1,10 @@
 import os
 from pathlib import Path
 import dj_database_url
+import matplotlib
+
+
+matplotlib.rcParams['font.family'] = 'Arial'
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,14 +80,15 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# ✅ Static files
+# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # for collectstatic
 
-# ✅ Comment this out unless you have a /static folder
+# Comment this out unless you have a /static folder
 # STATICFILES_DIRS = [BASE_DIR / 'static']
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Media files (if needed)
 MEDIA_URL = '/media/'
