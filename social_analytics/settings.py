@@ -60,11 +60,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'social_analytics.wsgi.application'
 
 # Database configuration
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Ensure you are using SQLite if you prefer file-based DB
-        'NAME': BASE_DIR / 'db.sqlite3',  # Ensure the correct path to the db.sqlite3 file
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    )
 }
 
 # Password validation
