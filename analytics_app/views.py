@@ -17,10 +17,10 @@ def download_chart(request):
 
 
 # Helper to safely parse float values from URL
-def safe_float(val, default):
+def safe_float(value, default=0):
     try:
-        return float(val)
-    except (ValueError, TypeError):
+        return float(value)
+    except (TypeError, ValueError):
         return default
 
 # Chart generator
