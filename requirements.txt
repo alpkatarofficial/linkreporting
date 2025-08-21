@@ -4,3 +4,4 @@ whitenoise==6.6.0
 matplotlib==3.8.3
 numpy==1.26.4
 dj-database-url
+pdfkit
